@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <title>SASS Gutless Grid</title>
+        <link href="http://yannisabel.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="css/libs/bootstrap.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav role="banner" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a
+                        href="/" class="navbar-brand">Yann Isabel</a>
+                </div>
+                <nav role="navigation" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="./index.html#start">Getting Started</a></li>
+                        <li><a href="./demo.html">Demos</a></li>
+                        <li><a href="https://github.com/yannisabel/sass-gutless-grid">Download</a></li>
+                        <li><a href="https://github.com/yannisabel">Github</a></li>
+                        <li><a href="http://yannisabel.com" target="_blank">My website</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+        <div id="masthead">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1><span>Demos&nbsp;:</span><br/>SASS Gutless Grid</h1></div>
+                    <div class="col-md-3 col-md-offset-2 right"><img src="/images/gutless-grid.png" class="img-responsive"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div id="grid">
+                    <div class="content">
+                        <header id="simplegrid">Grid System</header>
+                        <div class="wrap">
+                            <div class="block col-12">col-12</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-3">col-3</div>
+                            <div class="block col-9">col-9</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-4">col-4</div>
+                            <div class="block col-8">col-8</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-6">col-6</div>
+                            <div class="block col-6">col-6</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-4">col-4</div>
+                            <div class="block col-6">col-6</div>
+                            <div class="block col-2">col-2</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-3">col-3</div>
+                            <div class="block col-3">col-3</div>
+                            <div class="block col-3">col-3</div>
+                            <div class="block col-3">col-3</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-1">col-1</div>
+                            <div class="block col-3">col-3</div>
+                            <div class="block col-6">col-6</div>
+                            <div class="block col-1">col-1</div>
+                            <div class="block col-1">col-1</div>
+                        </div>
+                    </div>
+
+                    <div class="content gutless">
+                        <header id="gutless">Gutless Grid System </header>
+                        <div class="wrap">
+                            <div class="block col-12-gutless">col-12-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-3-gutless">col-3-gutless</div>
+                            <div class="block col-9-gutless">col-9-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-4-gutless">col-4-gutless</div>
+                            <div class="block col-8-gutless">col-8-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-6-gutless">col-6-gutless</div>
+                            <div class="block col-6-gutless">col-6-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-4-gutless">col-4-gutless</div>
+                            <div class="block col-6-gutless">col-6-gutless</div>
+                            <div class="block col-2-gutless">col-2-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-3-gutless">col-3-gutless</div>
+                            <div class="block col-3-gutless">col-3-gutless</div>
+                            <div class="block col-3-gutless">col-3-gutless</div>
+                            <div class="block col-3-gutless">col-3-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-1-gutless">col-1-gutless</div>
+                            <div class="block col-3-gutless">col-3-gutless</div>
+                            <div class="block col-6-gutless">col-6-gutless</div>
+                            <div class="block col-1-gutless">col-1-gutless</div>
+                            <div class="block col-1-gutless">col-1-gutless</div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <header id="offset">Grid System with Offset</header>
+                        <div class="wrap">
+                            <div class="block col-12">col-12</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-3 col-2-offset">col-3 col-2-offset</div>
+                            <div class="block col-7">col-7</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-4">col-4</div>
+                            <div class="block col-4 col-4-offset">col-4 col-4-offset</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-4-offset-alone">col-4-offset-alone</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-12">col-12</div>
+                        </div>
+                    </div>
+
+                    <div class="content gutless">
+                        <header id="offset-gutless">Gutless Grid System with Offset</header>
+                        <div class="wrap">
+                            <div class="block col-12-gutless">col-12-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-3-gutless col-2-offset-gutless">col-3-gutless col-2-offset-gutless</div>
+                            <div class="block col-7-gutless">col-7-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-4-gutless">col-4-gutless</div>
+                            <div class="block col-4-gutless col-4-offset-gutless">col-4-gutless col-4-offset-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-4-gutless col-4-offset-gutless">col-4-gutless col-4-offset-gutless</div>
+                        </div>
+                        <div class="wrap">
+                            <div class="block col-12-gutless">col-12-gutless</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+
+</html>

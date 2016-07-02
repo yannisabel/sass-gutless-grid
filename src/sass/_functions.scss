@@ -1,0 +1,11 @@
+/*==========  FUNCTIONS  ==========*/
+
+/* Choose the best contrast color on the background */
+@function colorOnBackground($color){
+    @if (lightness( $color ) > 50){
+      @return $fontBase;
+    }
+    @else{
+      @return $white;
+    }
+}

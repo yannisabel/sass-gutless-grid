@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <title>Hello world !</title>
+        <link href="http://yannisabel.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="css/libs/bootstrap.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav role="banner" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a
+                        href="/" class="navbar-brand">Yann Isabel</a>
+                </div>
+                <nav role="navigation" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#start" title="Getting Started">Getting Started</a></li>
+                        <li><a href="./demo.html" title="The demo Page">Demos</a></li>
+                        <li><a href="https://github.com/yannisabel/sass-gutless-grid">Download</a></li>
+                        <li><a href="https://github.com/yannisabel" title="my Github profile" target="_blank">Github</a></li>
+                        <li><a href="http://yannisabel.com" target="_blank">My website</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+        <div id="masthead">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1><span>Documentation&nbsp;:</span><br/>SASS Gutless Grid</h1></div>
+                    <div class="col-md-3 col-md-offset-2 right"><img src="/images/gutless-grid.png" class="img-responsive"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div id="leftCol" class="col-md-3">
+                    <ul id="sidebar" class="nav nav-stacked">
+                        <li><a href="#start" title="Getting Started">1. Getting Started</a></li>
+                        <li><a href="#mixins" title="Mixins">2. Mixins</a></li>
+                        <li><a href="#sass" title="A part of a Sass Doc">3. Sass doc</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9 content-doc">
+                    <h2 id="start">1. Getting Started</h2>
+                    <p>This is the Documentation page. If you don't have the time to read or if you like a good example before starting like me you can check <a href="./demo.html" title="the demos page">the demos page</a>.
+                    <p><b>SASS Gutless Grid</b> is a grid System in 4 parts :</p>
+                    <ul>
+                        <li>Grid with gutter</li>
+                        <li>Grid without gutter (I like to call it <b>Gutless</b>)</li>
+                        <li>Grid with offset capacity</li>
+                        <li>And finally the <b>Gutless Grid</b> with offset capacity</li>
+                    </ul>
+                    <p>
+                        All this methods can be mixed and added to a framework with an other grid system (this documentation has been made with <a href="http://getbootstrap.com/" title="Official Bootstrap website" target="_blank">Bootstrap</a> for example).
+                        This grid was made in one purpose: the challenge (and I think I wanted to have my own grid system too). No pressure, just for fun! To do it I have created different mixins with <a href="http://sass-lang.com/" title="SASS official website" target="_blank">SASS</a> to generate classes, just like Bootstrap.
+                        You can check methods in <a href="#mixins" title="Mixins">the next chapter</a>.
+                        You can find a mixin for responsive breakpoints too. It's easier to manage the grid with it, and you can easily change the breakpoints values.
+                        Default value:
+                        <pre>// Small screen
+$break-small: 'max-width:767px';
+// Medium screen
+$break-medium: 'min-width:768px';
+// large screen
+$break-large: 'min-width:960px';
+// Extra large screen
+$break-wide: 'min-width:1200px';
+</pre>
+                    </p>
+                    <p><br/>To compile my SASS files into CSS files I used <a href="http://gulpjs.com/" title="Gulpjs" target="_blank">Gulp</a> with <a href="https://www.npmjs.com/package/gulp-sass" title="gulp-sass on NPM official website" target="_blank">gulp-sass</a> package.
+                    If you download or clone the
+                        sass-gutless-grid here is the structure of the directory:</p>
+<pre>|- sass-gutless-grid/
+        |- src/
+    	    |- fonts/
+    	    |- images/
+    	    |- js/
+    	    |- sass/
+    	    |- templates/
+    		    |- index.html
+    		    |- demo.html
+    	|- web/
+    	    |- fonts/
+    	    |- images/
+    	    |- js/
+    	    |- css/
+    	    |- index.html
+            |- demo.html
+        |- gulpfile.js
+    	|- package.json
+</pre><br>
+                    <blockquote>What can we expect to do with Gulp?</blockquote>
+                    <p>Almost every task you do in development a thousand time a day. Move files or directory, minify javascript files, concatenate them, prettify your code and much more! Gulp is your Task Runner, it can automatize your workflow. Here it helps with SASS and browser-sync(reload each time there are modifications in the <code>src</code> folder)</p>
+                    <p>If you want to go further with Gulp or if you don't know how it works you can check my <a href="https://github.com/yannisabel/gulp-workflow" title="Gulp Workflow with SASS and JADE">Gulp workflow with SASS and Jade</a>.</p>
+                    <h2 id="mixins">2. Mixins</h2>
+                    <h3>Grid Method with gutter</h3>
+                    <p>First we need to choose the number of column we want to our project. Here I choose 12 columns and I put it into a variable. I do the same for gutter width:
+                        <pre>$total-col: 12;
+$gutter-width:1%;</pre>
+                    </p>
+                    <p>Now with this variables we can calculate the width of each column. And because I'm not good enough to do it myself I can do it with SASS. If you have worked with SASS before you know you can write loops. With a <code>for</code> loop we can increment from 1 through 12 like that :<br />
+                    <pre>@for $i from 1 through $total-col{}</pre>
+                    <p>In this loop we write a simple calculation. We need to add the gutter width to each column width and divide it by the result of the total of column divided by the number of the column. After that we need to remove the gutter width of the result, and this is what it looks with our variables:
+                        <pre>width : (100% + $gutter-width) / ($total-col / $i) - $gutter-width
+//put this in the loop
+@for $i from 1 through $total-col{
+    .col-#{$i}{
+        width : (100% + $gutter-width) / ($total-col / $i) - $gutter-width
+    }
+}
+//In CSS this loop output:
+.col-1 {
+    width: 7.41667%;
+}
+.col-2 {
+    width: 15.83333%;
+}
+.col-3 {
+    width: 24.25%;
+}
+.col-4 {
+    width: 32.66667%;
+}
+.col-5 {
+    width: 41.08333%;
+}
+.col-6 {
+    width: 49.5%;
+}
+.col-7 {
+    width: 57.91667%;
+}
+.col-8 {
+    width: 66.33333%;
+}
+.col-9 {
+    width: 74.75%;
+}
+.col-10 {
+    width: 83.16667%;
+}
+.col-11 {
+    width: 91.58333%;
+}
+.col-12 {
+    width: 100%;
+}
+</pre>
+                        <h3>Gutless Grid Method</h3>
+                        We can have a simple grid with gutter with this calculation. But the purpose of the <b>Gutless Grid</b> is to switch between grid with gutter and grid without gutter. To do that we can put arguments into a mixin. "With" or "without" means we can use a boolean state <code>true</code> or <code>false</code>.
+                        We just take the calculation and we put it into a Mixin with two arguments: the number of column and if we have a gutter. Here is the final Mixin in this grid system:
+                        <pre>@mixin grid($i, $gutter:false) {
+    // with gutter
+    @if $gutter {
+        width:(100% + $gutter-width) / ($total-col / $i) - $gutter-width;
+    }
+    // without gutter (just remove the gutter)
+    @else{
+        width: ( 100% / ($total-col / $i) );
+    }
+}</pre>
+                        <blockquote>Where is the loop you mentioned before?</blockquote>
+                        If we make a loop for each grid method we write it four time. I have a better option: call our mixins in the same loop.
+                        Here are the include of the Mixins:
+                        <pre>@for $i from 1 through $total-col {
+    // simple grid with gutter
+    .col-#{$i} { @include grid($i, true); }
+    // simple grid without gutter
+    .col-#{$i}-gutless { @include grid($i, false); }
+}</pre>
+                    </p>
+                    <h3>Style it and fix the first-child</h3>
+                    <p>
+                        Yes we have a lot of class to select but don't worry we can do it with 2 selectors. One that match with <code>col-</code> and one that match with <code>-gutless</code>. There are a problem with first-child element too. We have a margin-left but we don't want it to the first element.
+                        <pre>// general properties for selector with class that contains 'col-'
+[class*='col-'] {
+    float: left;
+    margin-left: $gutter-width;
+    margin-bottom:$gutter-width;
+    border:1px solid $blue;
+    &:first-child {
+        margin-left: 0;
+    }
+}
+// general properties for selector with class that contains '-gutless'
+[class*='-gutless'] {
+    margin-left: 0;
+    margin-bottom:0;
+    &:first-child {
+        margin-left: 0;
+    }
+}</pre>
+                    </p>
+                    <h3>The Grid Method with Offset</h3>
+                    <p>The logic is the same as the Grid Method but the calculation need to be in a margin-left like this:
+                    <pre>//With gutter
+margin-left:(100% + $gutter-width) / ($total-col / $i) !important;
+// without gutter
+margin-left:100% / ($total-col / $i) !important;</pre>
+                        But with the offset we have some problems again with first-child but with the last too. We need to deal with the gutter-width. And we need to calculate the width of a single offset element. If the element is the first and the last-child. And because some selectors should have the same calculation we used the <code>@extend</code> of SASS.<br />
+                        In conclusion all the system looks like that:
+                        <pre>/*__________________________THE GRID_________________________________*/
+/*_______grid variables_______*/
+$total-col: 12;
+$gutter-width:1%;
+
+/*_______Grid Mixin_________*/
+@mixin grid($i, $gutter:false) {
+    // with gutter
+    @if $gutter {
+        width:(100% + $gutter-width) / ($total-col / $i) -  $gutter-width;
+    }
+    // without gutter
+    @else{
+        width: ( 100% / ($total-col / $i) );
+    }
+}
+/*_______Grid Offset Mixin________*/
+@mixin offset($i, $gutter:false) {
+    // with gutter
+    @if $gutter {
+        margin-left:(100% + $gutter-width) / ($total-col / $i) !important;
+    }
+    // without gutter
+    @else {
+        margin-left:100% / ($total-col / $i) !important;
+    }
+}
+/*______Include the mixins in a loop________*/
+@for $i from 1 through $total-col {
+    // simple grid with gutter
+    .col-#{$i} { @include grid($i, true); }
+    // simple grid without gutter
+    .col-#{$i}-gutless { @include grid($i, false); }
+    // offset system
+    .col-#{$i}-offset {
+        @include offset($i, true);
+        // Deal with the first child. Add the margin-left
+        &:first-child{
+            @extend .col-#{$i}-offset;
+        }
+        // Deal with the last child. Add gutter-width to margin-left
+        &:last-child{
+            margin-left: (100% + $gutter-width) / ($total-col / $i) + $gutter-width !important;
+        }
+    }
+    // If the block is alone.
+    .col-#{$i}-offset-alone {
+        margin-left: 100% / ($total-col / $i) + (($gutter-width * $i) / $total-col) !important;
+        &:first-child{
+            @extend .col-#{$i};
+            @extend .col-#{$i}-offset-alone;
+        }
+    }
+    // offset system without gutter
+    .col-#{$i}-offset-gutless {
+        @include offset($i, false);
+        &:first-child{
+            @extend .col-#{$i}-offset-gutless;
+        }
+        // Deal with the last child. remove gutter of the calcul
+        &:last-child{
+            margin-left: 100% / ($total-col / $i) !important;
+        }
+    }
+}
+// general properties for selector with class that contains 'col-'
+[class*='col-'] {
+    float: left;
+    margin-left: $gutter-width;
+    margin-bottom:$gutter-width;
+    border:1px solid $blue;
+    &:first-child {
+        margin-left: 0;
+    }
+}
+// general properties for selector with class that contains '-gutless'
+[class*='-gutless'] {
+    margin-left: 0;
+    margin-bottom:0;
+    &:first-child {
+        margin-left: 0;
+    }
+}</pre>
+                        Our main mixins in the loop look like :
+                        <pre>.col-#{$i} { @include grid($i, true); }
+.col-#{$i}-gutless { @include grid($i, false); }
+.col-#{$i}-offset { @include offset($i, true); }
+.col-#{$i}-offset-gutless { @include offset($i, false);}</pre>
+                    </p>
+
+
+                        </p>
+                        <h2 id="sass">3. SASS doc</h2>
+                        <p>This documentation is a part of the official documentation. If you want more go to the <a href="http://sass-lang.com/" title="SASS Official Website">Sass website</a>.</p>
+                        <h3>Variables</h3>
+                        <p>Think of variables as a way to store information that you want to reuse throughout your stylesheet. You can store things like colors, font stacks, or any CSS value you think you'll want to reuse. Sass uses the $ symbol to make
+                            something a variable. Here's an example:</p><pre>$font-stack: Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}</pre>
+                        <p>Output</p><pre>body {
+   font: 100% Helvetica, sans-serif;
+   color: #333;
+}</pre>
+                        <h3>Nesting</h3>
+                        <p>When writing HTML you've probably noticed that it has a clear nested and visual hierarchy. CSS, on the other hand, doesn't.</p>
+                        <p>Sass will let you nest your CSS selectors in a way that follows the same visual hierarchy of your HTML. Be aware that overly nested rules will result in over-qualified CSS that could prove hard to maintain and is generally considered
+                            bad practice.</p>
+                        <p>With that in mind, here's an example of some typical styles for a site's navigation:</p><pre>nav {
+   ul {
+       margin: 0;
+       padding: 0;
+       list-style: none;
+   }
+
+   li { display: inline-block; }
+
+   a {
+       display: block;
+       padding: 6px 12px;
+       text-decoration: none;
+   }
+}</pre>
+                        <p>Output</p><pre>nav ul {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+nav li {
+   display: inline-block;
+}
+
+nav a {
+   display: block;
+   padding: 6px 12px;
+   text-decoration: none;
+}</pre>
+                        <h3>mixins</h3>
+                        <p>Some things in CSS are a bit tedious to write, especially with CSS3 and the many vendor prefixes that exist. A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. You can even pass in values
+                            to make your mixin more flexible. A good use of a mixin is for vendor prefixes. Here's an example for <code>border-radius</code>.</p><pre>@mixin border-radius($radius) {
+   -webkit-border-radius: $radius;
+   -moz-border-radius: $radius;
+   -ms-border-radius: $radius;
+   border-radius: $radius;
+}
+
+.box { @include border-radius(10px); }</pre>
+                        <p>To create a mixin you use the <code>@mixin</code> directive and give it a name. We've named our mixin border-radius. We're also using the variable <code>$radius</code> inside the parentheses so we can pass in a radius of whatever
+                            we want. After you create your mixin, you can then use it as a CSS declaration starting with <code>@include</code> followed by the name of the mixin. When your CSS is generated it'll look like this:</p><pre>.box {
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   -ms-border-radius: 10px;
+   border-radius: 10px;
+}</pre>
+                        <h3>Extend/Inheritance</h3>
+                        <p>This is one of the most useful features of Sass. Using <code>@extend</code> lets you share a set of CSS properties from one selector to another. It helps keep your Sass very DRY. In our example we're going to create a simple series
+                            of messaging for errors, warnings and successes.</p><pre>.message {
+   border: 1px solid #ccc;
+   padding: 10px;
+   color: #333;
+}
+
+.success {
+   @extend .message;
+   border-color: green;
+}
+
+.error {
+   @extend .message;
+   border-color: red;
+}
+
+.warning {
+   @extend .message;
+   border-color: yellow;
+}</pre>
+                        <p>What the above code does is allow you to take the CSS properties in <code>.message</code> and apply them to <code>.success</code>, <code>.error</code>, & <code>.warning</code>. The magic happens with the generated CSS, and this
+                            helps you avoid having to write multiple class names on HTML elements. This is what it looks like:</p><pre>.message, .success, .error, .warning {
+   border: 1px solid #cccccc;
+   padding: 10px;
+   color: #333;
+}
+
+.success {
+   border-color: green;
+}
+
+.error {
+   border-color: red;
+}
+
+.warning {
+   border-color: yellow;
+}</pre>
+                        <h3>functions</h3>
+                        <p>You can also make function like in Javascript or PHP. There is a function I made for accessibility color. It can choose the best contrast between font color and the background.</p>
+                        <script src="https://gist.github.com/yannisabel/aa94fb081fe5b51dbb91818707fdf9c1.js"></script>
+                        <p>I hope you like this grid system! Don't hesitate to make a pull request!</p>
+                </div>
+            </div>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+
+</html>

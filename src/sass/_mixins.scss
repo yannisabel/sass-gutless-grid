@@ -1,0 +1,79 @@
+//PREFIXES BROWSERS
+
+@mixin crossBrowser($property, $css){
+    -webkit-#{$property} : $css;
+    -moz-#{$property} : $css;
+    -o-#{$property} : $css;
+    #{$property} : $css;
+}
+
+//CLEARFIX
+
+%clearfix{
+    *zoom: 1;
+    &:before,
+    &:after{
+        content: " ";
+        display: table;
+    }
+    &:after{
+        clear: both;
+    }
+}
+
+// LIST
+// Place argument like :
+// $listPosition => inside or outside
+// $bulletStyle => name of the bullet
+
+@mixin uList($listPosition, $bulletStyle){
+    list-style-position: $listPosition;
+    list-style-type: $bulletStyle;
+}
+/*_________________BREAKPOINT MIXINS________________*/
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "small" {
+    @media (#{$break-small}) {
+      @content;
+    }
+  }
+  @else if $breakpoint == "medium" {
+    @media (#{$break-medium}) {
+      @content;
+    }
+  }
+  @else if $breakpoint == "large" {
+    @media (#{$break-large}) {
+      @content;
+    }
+  }
+  @else if $breakpoint == "wide" {
+    @media (#{$break-wide}) {
+      @content;
+    }
+  }
+}
+
+/*___________________GRID MIXINS____________________*/
+/*_______Grid Mixin_________*/
+@mixin grid($i, $gutter:false) {
+  // with gutter
+  @if $gutter {
+    width:(100% + $gutter-width) / ($total-col / $i) - $gutter-width;
+  }
+  // without gutter
+  @else{
+    width: ( 100% / ($total-col / $i) );
+  }
+}
+/*_______Grid Offset Mixin________*/
+@mixin offset($i, $gutter:false) {
+  // with gutter
+  @if $gutter {
+    margin-left:(100% + $gutter-width) / ($total-col / $i) !important;
+  }
+  // without gutter
+  @else {
+    margin-left:100% / ($total-col / $i) !important;
+  }
+}

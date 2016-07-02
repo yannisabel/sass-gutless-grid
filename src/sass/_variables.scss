@@ -1,0 +1,30 @@
+/*==========  VARIABLES  ==========*/
+// fonts
+$fontDefault: 'Roboto', Helvetica, sans-serif !default;
+$fontIcon: 'icons' !default;
+
+// Defining font sizes
+$fontSmall: 12px !default;
+$fontBase: 16px  !default;
+$fontMedium: 20px !default;
+$fontLarge: 26px !default;
+$fontXLarge: 36px !default;
+
+// line height
+$lineHeight: 26px !default;
+
+/*_____________________ BREAKPOINTS_______________________*/
+// Inspired by Hugo Giraudel Post => https://www.sitepoint.com/managing-responsive-breakpoints-sass/
+
+// Small screen
+$break-small: 'max-width:767px';
+// Medium screen
+$break-medium: 'min-width:768px';
+// large screen
+$break-large: 'min-width:960px';
+// Extra large screen
+$break-wide: 'min-width:1200px';
+
+/*___________________GRID_______________*/
+$total-col: 12;
+$gutter-width:1%;

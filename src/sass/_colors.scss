@@ -1,0 +1,16 @@
+// Color
+$dark-blue: #212228;
+$blue: #264b68;
+$blueCode: lighten($blue, 60%);
+
+// Fonts Colors
+$fontColorBase: #333;
+$fontColor: rgba(255,255,255,.3);
+
+/* ==========  Black and White ========== */
+$white: #fff;
+$colorBlack: #000;
+$colorGrayDark: rgba($colorBlack, .87);
+$colorGray: rgba($colorBlack, .54);
+$colorGrayLight: rgba($colorBlack, .26);
+$colorGrayLighter: rgba($colorBlack, .12);
