@@ -76,24 +76,38 @@ $break-wide: 'min-width:1200px';
                     If you download or clone the
                         sass-gutless-grid here is the structure of the directory:</p>
 <pre>|- sass-gutless-grid/
-        |- src/
-    	    |- fonts/
-    	    |- images/
-    	    |- js/
-    	    |- sass/
-    	    |- templates/
-    		    |- index.html
-    		    |- demo.html
-    	|- web/
-    	    |- fonts/
-    	    |- images/
-    	    |- js/
-    	    |- css/
-    	    |- index.html
-            |- demo.html
-        |- gulpfile.js
-    	|- package.json
-</pre><br>
+    |- src/
+	    |- fonts/
+	    |- images/
+        |- js/
+            |- bootstrap.min.js
+            |- main.js
+        |- sass/
+            |- libs/
+                |- bootstrap.min.css
+            |- _colors.scss
+            |- _functions.scss
+            |- _mixins.scss
+            |- _variables.scss
+            |- main.scss
+	    |- pages/
+		    |- index.html
+		    |- demo.html
+	|- web/
+	    |- fonts/
+	    |- images/
+        |- js/
+            |- bootstrap.min.js
+            |- main.js
+        |- css/
+            |- libs/
+                |- bootstrap.min.css
+            |- main.css
+	    |- index.html
+        |- demo.html
+    |- gulpfile.js
+	|- package.json
+</pre>
                     <blockquote>What can we expect to do with Gulp?</blockquote>
                     <p>Almost every task you do in development a thousand time a day. Move files or directory, minify javascript files, concatenate them, prettify your code and much more! Gulp is your Task Runner, it can automatize your workflow. Here it helps with SASS and browser-sync(reload each time there are modifications in the <code>src</code> folder)</p>
                     <p>If you want to go further with Gulp or if you don't know how it works you can check my <a href="https://github.com/yannisabel/gulp-workflow" title="Gulp Workflow with SASS and JADE">Gulp workflow with SASS and Jade</a>.</p>
