@@ -20,19 +20,18 @@ If you already know how to install gulp to compile your SASS just clone or fork 
 
 First you need to install [Node.js](https://nodejs.org/en/ "officiel Nodejs website") on your computer. Then open a terminal (Your favorite terminal will be perfect), and now go to the directory base with the following command:
 
-`cd path/to/the/directory/gulp-workflow`
+`cd path/to/the/directory/sass-gutless-grid`
 
-Here, you can install [NPM](https://www.npmjs.com/ "npmjs official website")(Node Package Manager) dependancies.
-
+Here, you can install dependencies (you need to [install yarn first](https://yarnpkg.com/lang/en/docs/install/ "yarn installation page")).
 Run this command:
 
-`npm install`
+`yarn install`
 
 It installs all dependancies found in the `package.json`.
 
 You need to install gulp globally with this command:
 
-`npm install gulp -g`
+`yarn add gulp -g`
 
 Then just run the following command line:
 

@@ -79,6 +79,7 @@ gulp.task('sass', function() {
             precision: 10,
             onError: console.error.bind(console, 'Sass error:')
         }))
+        .pipe(plugins.autoprefixer("last 2 versions", "> 1%"))
         .pipe(plugins.cssbeautify({
             indent: '  ',
             autosemicolon: true

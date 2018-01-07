@@ -1,58 +1,18 @@
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/roboto/roboto_regular/Roboto-Regular.eot');
-    src: url('../fonts/roboto/roboto_regular/Roboto-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto/roboto_regular/Roboto-Regular.woff') format('woff'), url('../fonts/roboto/roboto_regular/Roboto-Regular.ttf') format('truetype'), url('../fonts/roboto/roboto_regular/Roboto-Regular.svg#robotoregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/roboto/roboto_italic/Roboto-Italic.eot');
-    src: url('../fonts/roboto/roboto_italic/Roboto-Italic.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto/roboto_italic/Roboto-Italic.woff') format('woff'), url('../fonts/roboto/roboto_italic/Roboto-Italic.ttf') format('truetype'), url('../fonts/roboto/roboto_italic/Roboto-Italic.svg#robotoitalic') format('svg');
-    font-style: italic;
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/roboto/roboto_light/Roboto-Light.eot');
-    src: url('../fonts/roboto/roboto_light/Roboto-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto/roboto_light/Roboto-Light.woff') format('woff'), url('../fonts/roboto/roboto_light/Roboto-Light.ttf') format('truetype'), url('../fonts/roboto/roboto_light/Roboto-Light.svg#robotolight') format('svg');
-    font-weight: lighter;
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/roboto/roboto_medium/Roboto-Medium.eot');
-    src: url('../fonts/roboto/roboto_medium/Roboto-Medium.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto/roboto_medium/Roboto-Medium.woff') format('woff'), url('../fonts/roboto/roboto_medium/Roboto-Medium.ttf') format('truetype'), url('../fonts/roboto/roboto_medium/Roboto-Medium.svg#robotomedium') format('svg');
-    font-weight: 600;
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/roboto/roboto_mediumitalic/Roboto-MediumItalic.eot');
-    src: url('../fonts/roboto/roboto_mediumitalic/Roboto-MediumItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto/roboto_mediumitalic/Roboto-MediumItalic.woff') format('woff'), url('../fonts/roboto/roboto_mediumitalic/Roboto-MediumItalic.ttf') format('truetype'), url('../fonts/roboto/roboto_mediumitalic/Roboto-MediumItalic.svg#robotomediumitalic') format('svg');
-    font-weight: 600;
-    font-style: italic;
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/roboto/roboto_bold/Roboto-Bold.eot');
-    src: url('../fonts/roboto/roboto_bold/Roboto-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto/roboto_bold/Roboto-Bold.woff') format('woff'), url('../fonts/roboto/roboto_bold/Roboto-Bold.ttf') format('truetype'), url('../fonts/roboto/roboto_bold/Roboto-Bold.svg#robotobold') format('svg');
-    font-weight: 700;
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/roboto/roboto_bolditalic/Roboto-BoldItalic.eot');
-    src: url('../fonts/roboto/roboto_bolditalic/Roboto-BoldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto/roboto_bolditalic/Roboto-BoldItalic.woff') format('woff'), url('../fonts/roboto/roboto_bolditalic/Roboto-BoldItalic.ttf') format('truetype'), url('../fonts/roboto/roboto_bolditalic/Roboto-BoldItalic.svg#robotobolditalic') format('svg');
-    font-weight: 700;
-    font-style: italic;
-}
 @import 'variables';
 @import 'colors';
 @import 'mixins';
 @import 'functions';
+
+@font-face {
+    @include font-face('Roboto', normal, fonts/roboto/roboto_regular/Roboto-Regular);
+}
+
 *,
 *:after,
 *:before {
     margin: 0;
     padding: 0;
-    @include crossBrowser(box-sizing, border-box);
+    box-sizing: border-box;
 }
 body {
     padding: 50px 0 0;
@@ -115,11 +75,11 @@ code {
     float: left;
 }
 [class*='col-md']{
-    border:none !important;
+    border: none !important;
     margin-left:0 !important;
 }
 [class*='col-md'].right{
-    float:right !important;
+    float: right !important;
 }
 .navbar {
     border: none;
@@ -187,8 +147,8 @@ code {
         font-size: $fontBase !important;
     }
 }
-/*_________________THE GRID_________________*/
-/*______Include the mixins in a loop________*/
+//_________________THE GRID_________________//
+//______Include the mixins in a loop________//
 @for $i from 1 through $total-col {
   // simple grid with gutter
   .col-#{$i} { @include grid($i, true); }
@@ -228,67 +188,67 @@ code {
 }
 // general properties for selector with class that contains 'col-'
 [class*='col-'] {
-  float: left;
-  margin-left: $gutter-width;
-  margin-bottom:$gutter-width;
-  border:1px solid $blue;
-  &:first-child {
-    margin-left: 0;
-  }
+    float: left;
+    margin-left: $gutter-width;
+    margin-bottom:$gutter-width;
+    border:1px solid $blue;
+    &:first-child {
+        margin-left: 0;
+    }
 }
 // general properties for selector with class that contains '-gutless'
 [class*='-gutless'] {
-  margin-left: 0;
-  margin-bottom:0;
-  &:first-child {
+    margin-bottom:0;
     margin-left: 0;
-  }
+    &:first-child {
+        margin-left: 0;
+    }
 }
 
-/*____________________START STYLING____________________*/
+//____________________START STYLING____________________//
 body {
-  font-family:sans-serif;
-  @include crossBrowser(box-sizing, border-box);
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 #grid{
-  width:848px;
-  .content{
-    width:100%;
-    header{
-      margin-bottom:$gutter-width;
-      padding:0.3rem;
-      background:$blue;
-      font-family:sans-serif;
-      font-size:$fontLarge;
-      color:$fontColor;
-      text-align:center;
+    width:848px;
+    .content{
+        width:100%;
+        header{
+            margin-bottom:$gutter-width;
+            padding:0.3rem;
+            background:$blue;
+            font-family:sans-serif;
+            font-size:$fontLarge;
+            text-align:center;
+            color:$fontColor;
+        }
+        &.gutless{
+            margin-bottom: $gutter-width;
+        }
+        .wrap {
+            overflow: hidden;
+        }
     }
-    &.gutless{
-      margin-bottom:$gutter-width;
-    }
-    .wrap {
-      overflow:hidden;
-    }
-  }
 }
 
 .block{
-  height:3.5rem;
-  @include crossBrowser(box-sizing, border-box);
-  background:$dark-blue;
-  font-size:$fontBase;
-  text-align:center;
-  line-height: 3.5rem;
-  color:$fontColor;
+    height: 3.5rem;
+    box-sizing: border-box;
+    background: $dark-blue;
+    font-size: $fontBase;
+    text-align:center;
+    line-height: 3.5rem;
+    color: $fontColor;
 }
-/*__________Include Breakpoint Mixins__________*/
+//__________Include Breakpoint Mixins__________//
 @include respond-to(small) {
     #grid{
-        width:100%;
+        width: 100%;
     }
     .block{
-        width:100%;
-        margin-left:0;
+        width: 100%;
+        margin-left: 0;
     }
     [class*='col-'] {
         float: none;
@@ -296,7 +256,7 @@ body {
     // general properties for selector with class that contains 'offset'
     [class*='offset'] {
         margin-left: 0;
-        width:100%;
+        width: 100%;
     &:first-child {
         margin-left: 0 !important;
     }
@@ -333,6 +293,6 @@ body {
 } //end large screen
 @include respond-to(wide) {
     #grid{
-        width:1170px;
+        width: 1170px;
     }
 } //end wide screen

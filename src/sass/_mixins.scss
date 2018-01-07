@@ -1,13 +1,14 @@
-//PREFIXES BROWSERS
-
-@mixin crossBrowser($property, $css){
-    -webkit-#{$property} : $css;
-    -moz-#{$property} : $css;
-    -o-#{$property} : $css;
-    #{$property} : $css;
+// FONT FACE
+@mixin font-face($fontFamily, $fontWeight, $FileURL) {
+  font-family: $fontFamily;
+  font-weight: $fontWeight;
+  src: url('#{$FileURL}.eot')  format('eot'),
+      url('#{$FileURL}.woff') format('woff'),
+      url('#{$FileURL}.ttf')  format('truetype'),
+      url('#{$FileURL}.svg') format('svg');
 }
 
-//CLEARFIX
+// CLEARFIX
 
 %clearfix{
     *zoom: 1;
@@ -30,7 +31,7 @@
     list-style-position: $listPosition;
     list-style-type: $bulletStyle;
 }
-/*_________________BREAKPOINT MIXINS________________*/
+//_________________BREAKPOINT MIXINS________________//
 @mixin respond-to($breakpoint) {
   @if $breakpoint == "small" {
     @media (#{$break-small}) {
@@ -54,8 +55,8 @@
   }
 }
 
-/*___________________GRID MIXINS____________________*/
-/*_______Grid Mixin_________*/
+//___________________GRID MIXINS____________________//
+//_______Grid Mixin_________//
 @mixin grid($i, $gutter:false) {
   // with gutter
   @if $gutter {
@@ -66,7 +67,7 @@
     width: ( 100% / ($total-col / $i) );
   }
 }
-/*_______Grid Offset Mixin________*/
+//_______Grid Offset Mixin________//
 @mixin offset($i, $gutter:false) {
   // with gutter
   @if $gutter {

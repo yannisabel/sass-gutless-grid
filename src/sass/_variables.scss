@@ -1,4 +1,4 @@
-/*==========  VARIABLES  ==========*/
+//___________ VARIABLES ______________//
 // fonts
 $fontDefault: 'Roboto', Helvetica, sans-serif !default;
 $fontIcon: 'icons' !default;
@@ -13,7 +13,7 @@ $fontXLarge: 36px !default;
 // line height
 $lineHeight: 26px !default;
 
-/*_____________________ BREAKPOINTS_______________________*/
+//_____________________ BREAKPOINTS_______________________//
 // Inspired by Hugo Giraudel Post => https://www.sitepoint.com/managing-responsive-breakpoints-sass/
 
 // Small screen
@@ -25,6 +25,6 @@ $break-large: 'min-width:960px';
 // Extra large screen
 $break-wide: 'min-width:1200px';
 
-/*___________________GRID_______________*/
+//___________________GRID_______________//
 $total-col: 12;
 $gutter-width:1%;

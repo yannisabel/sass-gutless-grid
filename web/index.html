@@ -76,41 +76,42 @@ $break-wide: 'min-width:1200px';
                     If you download or clone the
                         sass-gutless-grid here is the structure of the directory:</p>
 <pre>|- sass-gutless-grid/
-    |- src/
-	    |- fonts/
-	    |- images/
-        |- js/
-            |- bootstrap.min.js
-            |- main.js
-        |- sass/
-            |- libs/
-                |- bootstrap.min.css
-            |- _colors.scss
-            |- _functions.scss
-            |- _mixins.scss
-            |- _variables.scss
-            |- main.scss
-	    |- pages/
-		    |- index.html
-		    |- demo.html
-	|- web/
-	    |- fonts/
-	    |- images/
-        |- js/
-            |- bootstrap.min.js
-            |- main.js
-        |- css/
-            |- libs/
-                |- bootstrap.min.css
-            |- main.css
-	    |- index.html
-        |- demo.html
-    |- gulpfile.js
-	|- package.json
+        |- src/
+    	    |- fonts/
+    	    |- images/
+            |- js/
+                |- bootstrap.min.js
+                |- main.js
+            |- sass/
+                |- libs/
+                    |- bootstrap.min.css
+                |- _colors.scss
+                |- _functions.scss
+                |- _mixins.scss
+                |- _variables.scss
+                |- main.scss
+    	    |- pages/
+    		    |- index.html
+    		    |- demo.html
+    	|- web/
+    	    |- fonts/
+    	    |- images/
+            |- js/
+                |- bootstrap.min.js
+                |- main.js
+            |- css/
+                |- libs/
+                    |- bootstrap.min.css
+                |- main.css
+    	    |- index.html
+            |- demo.html
+        |- gulpfile.js
+        |- package.json
+        |- yarn.lock
 </pre>
                     <blockquote>What can we expect to do with Gulp?</blockquote>
                     <p>Almost every task you do in development a thousand time a day. Move files or directory, minify javascript files, concatenate them, prettify your code and much more! Gulp is your Task Runner, it can automatize your workflow. Here it helps with SASS and browser-sync(reload each time there are modifications in the <code>src</code> folder)</p>
-                    <p>If you want to go further with Gulp or if you don't know how it works you can check my <a href="https://github.com/yannisabel/gulp-workflow" title="Gulp Workflow with SASS and JADE">Gulp workflow with SASS and Jade</a>.</p>
+                    <p>If you want to go further with Gulp or if you don't know how it works you can check my <a href="https://github.com/yannisabel/gulp-workflow" title="Gulp Workflow with SASS and Pug">Gulp workflow with SASS and Pug</a>.</p>
                     <h2 id="mixins">2. Mixins</h2>
                     <h3>Grid Method with gutter</h3>
                     <p>First we need to choose the number of column we want to our project. Here I choose 12 columns and I put it into a variable. I do the same for gutter width:
@@ -218,34 +219,8 @@ margin-left:(100% + $gutter-width) / ($total-col / $i) !important;
 margin-left:100% / ($total-col / $i) !important;</pre>
                         But with the offset we have some problems again with first-child but with the last too. We need to deal with the gutter-width. And we need to calculate the width of a single offset element. If the element is the first and the last-child. And because some selectors should have the same calculation we used the <code>@extend</code> of SASS.<br />
                         In conclusion all the system looks like that:
-                        <pre>/*__________________________THE GRID_________________________________*/
-/*_______grid variables_______*/
-$total-col: 12;
-$gutter-width:1%;
-
-/*_______Grid Mixin_________*/
-@mixin grid($i, $gutter:false) {
-    // with gutter
-    @if $gutter {
-        width:(100% + $gutter-width) / ($total-col / $i) -  $gutter-width;
-    }
-    // without gutter
-    @else{
-        width: ( 100% / ($total-col / $i) );
-    }
-}
-/*_______Grid Offset Mixin________*/
-@mixin offset($i, $gutter:false) {
-    // with gutter
-    @if $gutter {
-        margin-left:(100% + $gutter-width) / ($total-col / $i) !important;
-    }
-    // without gutter
-    @else {
-        margin-left:100% / ($total-col / $i) !important;
-    }
-}
-/*______Include the mixins in a loop________*/
+<pre>//_________________THE GRID_________________//
+//______Include the mixins in a loop________//
 @for $i from 1 through $total-col {
     // simple grid with gutter
     .col-#{$i} { @include grid($i, true); }
@@ -253,34 +228,34 @@ $gutter-width:1%;
     .col-#{$i}-gutless { @include grid($i, false); }
     // offset system
     .col-#{$i}-offset {
-        @include offset($i, true);
-        // Deal with the first child. Add the margin-left
-        &:first-child{
-            @extend .col-#{$i}-offset;
-        }
-        // Deal with the last child. Add gutter-width to margin-left
-        &:last-child{
-            margin-left: (100% + $gutter-width) / ($total-col / $i) + $gutter-width !important;
-        }
+    @include offset($i, true);
+    // Deal with the first child. Add the margin-left
+    &:first-child{
+        @extend .col-#{$i}-offset;
+    }
+    // Deal with the last child. Add gutter-width to margin-left
+    &:last-child{
+        margin-left: (100% + $gutter-width) / ($total-col / $i) + $gutter-width !important;
+    }
     }
     // If the block is alone.
     .col-#{$i}-offset-alone {
-        margin-left: 100% / ($total-col / $i) + (($gutter-width * $i) / $total-col) !important;
-        &:first-child{
-            @extend .col-#{$i};
-            @extend .col-#{$i}-offset-alone;
-        }
+    margin-left: 100% / ($total-col / $i) + (($gutter-width * $i) / $total-col) !important;
+    &:first-child{
+        @extend .col-#{$i};
+        @extend .col-#{$i}-offset-alone;
+    }
     }
     // offset system without gutter
     .col-#{$i}-offset-gutless {
-        @include offset($i, false);
-        &:first-child{
-            @extend .col-#{$i}-offset-gutless;
-        }
-        // Deal with the last child. remove gutter of the calcul
-        &:last-child{
-            margin-left: 100% / ($total-col / $i) !important;
-        }
+    @include offset($i, false);
+    &:first-child{
+        @extend .col-#{$i}-offset-gutless;
+    }
+    // Deal with the last child. remove gutter of the calcul
+    &:last-child{
+        margin-left: 100% / ($total-col / $i) !important;
+    }
     }
 }
 // general properties for selector with class that contains 'col-'
@@ -295,8 +270,8 @@ $gutter-width:1%;
 }
 // general properties for selector with class that contains '-gutless'
 [class*='-gutless'] {
-    margin-left: 0;
     margin-bottom:0;
+    margin-left: 0;
     &:first-child {
         margin-left: 0;
     }
